@@ -1,7 +1,7 @@
 <div id="content-header">
     <div id="breadcrumb">
         <a href="index.php" class="tip-bottom" title="首页"><i class="icon-home"></i>首页</a>
-        <a href="#" class="current">查询</a>
+        <a href="#" class="current">实体店消费记录查询</a>
     </div>
 </div>
 <div class="container-fluid">
@@ -10,7 +10,7 @@
             <span class="icon">
                 <i class="icon-th"></i>
             </span>
-            <h5>查询</h5>
+            <h5>实体店消费记录查询</h5>
         </div>
         <div class="search-form">
             <?php
@@ -104,8 +104,8 @@
                     array(
                         'name' => 'ADDTIME',
                         'headerHtmlOptions' => array('title' => '点击排序'),
-                        'value' => '$data->ADDTIME',
-                        'type' => 'datetime',
+                        'value' => 'date("Y-m-d H:i:s",$data->ADDTIME)',
+//                        'type' => 'datetime',
                     ),
                     array(
                         'name' => 'ORDERSN',

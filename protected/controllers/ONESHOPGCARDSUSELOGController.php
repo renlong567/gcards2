@@ -33,7 +33,7 @@ class ONESHOPGCARDSUSELOGController extends Controller
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'view', 'excel'),
+                'actions' => array('index', 'excel'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -46,12 +46,12 @@ class ONESHOPGCARDSUSELOGController extends Controller
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
      */
-    public function actionView($id)
-    {
-        $this->render('view', array(
-            'model' => $this->loadModel($id),
-        ));
-    }
+//    public function actionView($id)
+//    {
+//        $this->render('view', array(
+//            'model' => $this->loadModel($id),
+//        ));
+//    }
 
     /**
      * Creates a new model.
