@@ -12,6 +12,8 @@
  * @property string $ORDERSN
  * @property string $DESCRIPTION
  * @property string $JCDKHID
+ * @property string $POSID
+ * @property string $WORKERID
  */
 class ONESHOPGCARDSUSELOG extends CActiveRecord
 {
@@ -38,9 +40,11 @@ class ONESHOPGCARDSUSELOG extends CActiveRecord
             array('JCDKHID', 'length', 'max' => 10),
             array('ORDERSN', 'length', 'max' => 20),
             array('DESCRIPTION', 'length', 'max' => 500),
+            array('POSID', 'length', 'max' => 10),
+            array('WORKER', 'length', 'max' => 8),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('ID, USERID, ADDTIME, AMOUNT, GIFTCARDSSN, ORDERSN, DESCRIPTION, JCDKHID', 'safe', 'on' => 'search'),
+            array('ID, USERID, ADDTIME, AMOUNT, GIFTCARDSSN, ORDERSN, DESCRIPTION, JCDKHID, POSID, WORKERID', 'safe', 'on' => 'search'),
         );
     }
 
@@ -70,6 +74,8 @@ class ONESHOPGCARDSUSELOG extends CActiveRecord
             'ORDERSN' => '小票号',
             'DESCRIPTION' => '备注',
             'JCDKHID' => '店号',
+            'POSID' => '工作站号',
+            'WORKERID' => '工号',
         );
     }
 
@@ -119,6 +125,14 @@ class ONESHOPGCARDSUSELOG extends CActiveRecord
         if (!empty($_POST['ONESHOPGCARDSUSELOG']['DESCRIPTION']['disable']) && empty($_POST['ONESHOPGCARDSUSELOG']['DESCRIPTION']['enable']))
         {
             $criteria->compare('DESCRIPTION', '实体店退款');
+        }
+        if (!empty($_POST['ONESHOPGCARDSUSELOG']['POSID']))
+        {
+            $criteria->compare('POSID', $_POST['ONESHOPGCARDSUSELOG']['POSID']);
+        }
+        if (!empty($_POST['ONESHOPGCARDSUSELOG']['WORKERID']))
+        {
+            $criteria->compare('WORKERID', $_POST['ONESHOPGCARDSUSELOG']['WORKERID']);
         }
         $criteria->compare('JCDKHID', Yii::app()->user->khid);
 

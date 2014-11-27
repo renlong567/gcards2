@@ -33,6 +33,18 @@
                 </div>
             </div>
             <div class="control-group">
+                <label class="control-label">工作站号 :</label>
+                <div class="controls">
+                    <?php // echo $form->textField($model, 'POSID', array('class' => 'span4', 'placeholder' => '工作站号')); ?>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">工号 :</label>
+                <div class="controls">
+                    <?php // echo $form->textField($model, 'WORKERID', array('class' => 'span4', 'placeholder' => '工号')); ?>
+                </div>
+            </div>
+            <div class="control-group">
                 <label class="control-label">时间 :</label>
                 <div class="controls">
                     <?php echo $form->textField($model, 'ADDTIME[start_date]', array('class' => 'datepicker span2', 'data-date-format' => 'yyyy-mm-dd', 'placeholder' => '开始日期')); ?>
@@ -106,6 +118,14 @@
                         'headerHtmlOptions' => array('title' => '点击排序'),
                         'value' => 'date("Y-m-d H:i:s",$data->ADDTIME)',
 //                        'type' => 'datetime',
+                    ),
+                    array(
+                        'name' => 'POSID',
+                        'headerHtmlOptions' => array('title' => '点击排序'),
+                    ),
+                    array(
+                        'name' => 'WORKERID',
+                        'headerHtmlOptions' => array('title' => '点击排序'),
                     ),
                     array(
                         'name' => 'ORDERSN',

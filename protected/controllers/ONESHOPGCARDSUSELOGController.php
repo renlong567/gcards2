@@ -137,7 +137,7 @@ class ONESHOPGCARDSUSELOGController extends Controller
         $data = '';
         $date = date('Ymd');
         $filename = '新建Excel表';
-        $data .= "所属店名称\t时间\t小票号\t读书卡号\t金额（元）\t备注\n";
+        $data .= "所属店名称\t时间\t工作站号\t工号\t小票号\t读书卡号\t金额（元）\t备注\n";
 
         header("Content-type: application/vnd.ms-excel; charset=UTF-8");
         header("Content-Disposition: attachment; filename=$filename$date.xls");
@@ -149,13 +149,15 @@ class ONESHOPGCARDSUSELOGController extends Controller
             $data .= "$jcd_name\t";
             $date = date('Y-m-d H:i:s', $value->ADDTIME);
             $data .= "$date\t";
+            $data .= "$value->POSID\t";
+            $data .= "$value->WORKERID\t";
             $data .= "$value->ORDERSN\t";
             $data .= "$value->GIFTCARDSSN\t";
             $data .= "$value->AMOUNT\t";
             $data .= "$value->DESCRIPTION\n";
         }
 
-        echo iconv("UTF-8", "GB18030", $data);   //为兼容office
+        echo iconv('UTF-8', 'GB18030', $data);   //为兼容office
         Yii::app()->end();
     }
 
@@ -195,6 +197,14 @@ class ONESHOPGCARDSUSELOGController extends Controller
         if (!empty($_REQUEST['ONESHOPGCARDSUSELOG']['DESCRIPTION']['disable']) && empty($_REQUEST['ONESHOPGCARDSUSELOG']['DESCRIPTION']['enable']))
         {
             $criteria->compare('DESCRIPTION', '实体店退款');
+        }
+        if (!empty($_POST['ONESHOPGCARDSUSELOG']['POSID']))
+        {
+            $criteria->compare('POSID', $_POST['ONESHOPGCARDSUSELOG']['POSID']);
+        }
+        if (!empty($_POST['ONESHOPGCARDSUSELOG']['WORKERID']))
+        {
+            $criteria->compare('WORKERID', $_POST['ONESHOPGCARDSUSELOG']['WORKERID']);
         }
         $criteria->compare('JCDKHID', Yii::app()->user->khid);
 
