@@ -123,6 +123,7 @@
                         array(
                             '读书卡统计' => 'ONESHOPGIFTCARDS/count',
                             '贵宾卡统计' => 'ONESHOPGIFTCARDS/oldcardcount',
+                            '刷卡信息统计' => 'ONESHOPGCARDSUSELOG/count',
                         )
                     ),
                     '修改' => array(

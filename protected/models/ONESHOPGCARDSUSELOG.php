@@ -143,6 +143,62 @@ class ONESHOPGCARDSUSELOG extends CActiveRecord
     }
 
     /**
+     * @author RenLong
+     * @date 2014-12-05
+     * @remark 统计
+     * @return \CActiveDataProvider
+     */
+    public function statistics()
+    {
+        $start_date = empty($_POST['ONESHOPGCARDSUSELOG']['ADDTIME']['start_date']) ? null : strtotime($_POST['ONESHOPGCARDSUSELOG']['ADDTIME']['start_date']);
+        $end_date = empty($_POST['ONESHOPGCARDSUSELOG']['ADDTIME']['end_date']) ? null : strtotime($_POST['ONESHOPGCARDSUSELOG']['ADDTIME']['end_date']);
+        $group_where = '';
+
+        if (!is_null($start_date) && !is_null($end_date) && $start_date == $end_date)
+        {
+            $end_date = ONESHOPGIFTCARDS::model()->addsec($end_date);
+        }
+
+        $criteria = new CDbCriteria;
+        if (!empty($_POST['ONESHOPGCARDSUSELOG']['ORDERSN']))
+        {
+            $criteria->compare('ORDERSN', $_POST['ONESHOPGCARDSUSELOG']['ORDERSN']);
+            $group_where .= ',ORDERSN';
+        }
+        if (!empty($_POST['ONESHOPGCARDSUSELOG']['GIFTCARDSSN']))
+        {
+            $criteria->compare('GIFTCARDSSN', $_POST['ONESHOPGCARDSUSELOG']['GIFTCARDSSN']);
+            $group_where .= ',GIFTCARDSSN';
+        }
+        if (!empty($end_date))
+        {
+            $criteria->compare('ADDTIME', '<=' . $end_date);
+        }
+        if (!empty($start_date))
+        {
+            $criteria->compare('ADDTIME', '>=' . $start_date);
+        }
+        if (!empty($_POST['ONESHOPGCARDSUSELOG']['POSID']))
+        {
+            $criteria->compare('POSID', $_POST['ONESHOPGCARDSUSELOG']['POSID']);
+            $group_where .= ',POSID';
+        }
+        if (!empty($_POST['ONESHOPGCARDSUSELOG']['WORKERID']))
+        {
+            $criteria->compare('WORKERID', $_POST['ONESHOPGCARDSUSELOG']['WORKERID']);
+            $group_where .= ',WORKERID';
+        }
+
+        $criteria->compare('JCDKHID', Yii::app()->user->khid);
+        $criteria->select = 'SUM(AMOUNT) as AMOUNT,DESCRIPTION' . $group_where;
+        $criteria->group = 'DESCRIPTION' . $group_where;
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
+    }
+
+    /**
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.

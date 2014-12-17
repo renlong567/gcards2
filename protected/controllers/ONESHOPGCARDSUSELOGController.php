@@ -33,7 +33,7 @@ class ONESHOPGCARDSUSELOGController extends Controller
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('index', 'excel'),
+                'actions' => array('index', 'excel', 'count'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -125,6 +125,23 @@ class ONESHOPGCARDSUSELOGController extends Controller
             $model->attributes = $_POST['ONESHOPGCARDSUSELOG'];
 
         $this->render('index', array(
+            'model' => $model,
+        ));
+    }
+
+    /**
+     * @remark 统计
+     */
+    public function actionCount()
+    {
+        $model = new ONESHOPGCARDSUSELOG('search');
+        $model->unsetAttributes();
+        if (isset($_POST['ONESHOPGCARDSUSELOG']))
+        {
+            $model->attributes = $_POST['ONESHOPGCARDSUSELOG'];
+        }
+
+        $this->render('count', array(
             'model' => $model,
         ));
     }
