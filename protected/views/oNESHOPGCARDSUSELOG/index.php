@@ -35,13 +35,13 @@
             <div class="control-group">
                 <label class="control-label">工作站号 :</label>
                 <div class="controls">
-                    <?php // echo $form->textField($model, 'POSID', array('class' => 'span4', 'placeholder' => '工作站号')); ?>
+                    <?php echo $form->textField($model, 'POSID', array('class' => 'span4', 'placeholder' => '工作站号')); ?>
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label">工号 :</label>
                 <div class="controls">
-                    <?php // echo $form->textField($model, 'WORKERID', array('class' => 'span4', 'placeholder' => '工号')); ?>
+                    <?php echo $form->textField($model, 'WORKERID', array('class' => 'span4', 'placeholder' => '工号')); ?>
                 </div>
             </div>
             <div class="control-group">
