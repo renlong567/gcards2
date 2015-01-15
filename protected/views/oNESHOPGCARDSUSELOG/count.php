@@ -82,7 +82,7 @@
         ?>
         <div class="widget-content tab-content">
             <?php
-            $this->widget('zii.widgets.grid.CGridView', array(
+            $this->widget('zii.widgets.grid.CGridView1', array(
                 'id' => 'test-grid',
                 'dataProvider' => $model->statistics(),
 //            'filter' => $model,
@@ -100,49 +100,29 @@
                 'template' => '{items}<div id="list_footer">{pager}{summary}<div style="clear: both"></div></div>',
                 'itemsCssClass' => 'table table-bordered data-table dataTable',
                 'htmlOptions' => array('class' => 'tab-pane active'),
+                'enableSorting' => false, //是否开启排序
                 'columns' => array(
                     array(
                         'name' => '所属店名称',
                         'value' => '$data->jcd[\'DWMQC\']',
                     ),
-//                    array(
-//                        'name' => '日期',
-//                        'value' => function($data) {
-//                            return empty($data->ADDTIME) ? '' : date("Y-m-d H:i:s", $data->ADDTIME);
-//                        },
-//                    ),
+                    'POSID',
+                    'WORKERID',
+                    'ORDERSN',
+                    'GIFTCARDSSN',
                     array(
-                        'name' => '工作站号',
-                        'value' => function($data) {
-                            return empty($data->POSID) ? '' : $data->POSID;
+                        'name' => 'AMOUNT',
+                        'value' => function($data){
+                            switch ($data->DESCRIPTION)
+                            {
+                                case '实体店退款':
+                                    return '-' . $data->AMOUNT;
+                                case '实体店刷卡消费':
+                                    return $data->AMOUNT;
+                            }
                         },
                     ),
-                    array(
-                        'name' => '工号',
-                        'value' => function($data) {
-                            return empty($data->WORKERID) ? '' : $data->WORKERID;
-                        },
-                    ),
-                    array(
-                        'name' => '小票号',
-                        'value' => function($data) {
-                            return empty($data->ORDERSN) ? '' : $data->ORDERSN;
-                        },
-                    ),
-                    array(
-                        'name' => '读书卡号',
-                        'value' => function($data) {
-                            return empty($data->GIFTCARDSSN) ? '' : $data->GIFTCARDSSN;
-                        },
-                    ),
-                    array(
-                        'name' => '金额（元）',
-                        'value' => '$data->AMOUNT',
-                    ),
-                    array(
-                        'name' => 'DESCRIPTION',
-                        'value' => '$data->DESCRIPTION',
-                    ),
+                    'DESCRIPTION',
                 ),
             ));
             ?>

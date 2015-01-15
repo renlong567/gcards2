@@ -137,6 +137,15 @@
                     ),
                     array(
                         'name' => 'AMOUNT',
+                        'value'=> function($data){
+                            switch ($data->DESCRIPTION)
+                            {
+                                case '实体店退款':
+                                    return '-'.$data->AMOUNT;
+                                case '实体店刷卡消费':
+                                    return $data->AMOUNT;
+                            }
+                        },
                         'headerHtmlOptions' => array('title' => '点击排序'),
                     ),
                     array(
