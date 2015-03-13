@@ -17,9 +17,9 @@
         <script src="js/jquery.zoom.min.js"></script>
         <script src="js/common.js"></script>
         <script>
-            $(document).ready(function() {
-                $("#verifyCode").click(function() {
-                    $("#captcha").toggle();
+            $(document).ready(function () {
+                $("#verifyCode").click(function () {
+                    $("#captcha").show();
                 });
             });
         </script>
@@ -27,11 +27,9 @@
     <body>
         <div id="loginbox">
             <form id="loginform" class="form-vertical" method="post" action="index.php?r=ONESHOPGIFTCARDS/login">
+                <!--<div class="control-group normal_text">系统维护中......</div>-->
                 <div class="control-group normal_text">
-                    <!--<span style="font-family: Microsoft YaHei,simhei;font-size: 24px;">-->
                     <img src="images/logo3.png" alt="Logo" />
-                    <!--                        云书网读书卡管理系统
-                                    </span>-->
                 </div>
                 <div class="control-group">
                     <div class="controls">
@@ -72,9 +70,6 @@
                 </div>
                 <div class="form-actions">
                     <span class="pull-left">
-                        <!--<input id="ytLoginForm_rememberMe" type="hidden" name="LoginForm[rememberMe]" value="0" />
-                        <input style="float: left;" id="LoginForm_rememberMe" type="checkbox" value="1" name="LoginForm[rememberMe]" />
-                        <label style="float: left;color:#ffffff;margin-left: 10px;" for="LoginForm_rememberMe">保存用户登录信息</label> -->
                         <div class="slideThree">  
                             <input type="checkbox" value="1" id="slideThree" name="LoginForm[rememberMe]" />
                             <label for="slideThree"></label>

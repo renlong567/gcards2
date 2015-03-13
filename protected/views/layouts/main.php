@@ -182,7 +182,7 @@ ETO;
 
         <!--Footer-part-->
         <div class="row-fluid">
-            <div id="footer" class="span12"> 2014 &copy; made by R.L of The iyunshu.com </div>
+            <div id="footer" class="span12"> 2014 &copy; Coded by R.L of the iyunshu.com </div>
         </div>
         <!--end-Footer-part-->
     </body>
